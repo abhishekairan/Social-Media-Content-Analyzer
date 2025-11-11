@@ -1,26 +1,19 @@
 # Social Media Content Analyzer - Text Extraction Module
 
-A lightweight React application that extracts text from PDF and image files using Tesseract.js for OCR and pdf.js for PDF text extraction.
+A Nextjs application that extracts text from PDF and image files using Tesseract.js for OCR and pdf.js for PDF text extraction.
 
 ## Features
 
 - ✅ **Drag-and-Drop Upload** - Large, prominent drop zone with visual feedback
 - ✅ **Progress Tracking** - Real-time extraction progress with percentage
-- ✅ **Two-Column View** - Left preview, right extracted text
 - ✅ **File Validation** - Format & size checks with clear error messages
 - ✅ **Responsive Design** - Mobile-first, works on all screen sizes
 - ✅ **Copy & Download** - Extract text utilities
 - ✅ **Recent History** - Quick access to previous extractions
-- ✅ **Clean Code** - TypeScript, modular components, proper error handling
+- ✅ **Responsive UI** - Works well on screen sizes
 
-## Getting Started
 
-### Prerequisites
-
-- Node.js 18+ 
-- npm or yarn
-
-### Installation
+## Installation
 
 1. Install dependencies:
 ```bash
@@ -38,32 +31,7 @@ npm run dev
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run lint:fix` - Fix ESLint errors
-- `npm run format` - Format code with Prettier
-- `npm run type-check` - Run TypeScript type checking
-
-## Project Structure
-
-```
-├── app/
-│   ├── layout.tsx          # Root layout
-│   ├── page.tsx            # Main app page
-│   └── globals.css         # Global styles
-├── components/
-│   ├── FileUploader.tsx    # Drag-drop upload component
-│   ├── ProgressBar.tsx     # Upload progress indicator
-│   └── ResultView.tsx      # Two-column preview + extracted text
-├── hooks/
-│   └── useFileExtraction.ts # Custom hook for extraction logic
-├── utils/
-│   ├── textExtraction.ts   # PDF & OCR extraction logic
-│   ├── fileValidation.ts   # File type & size validation
-│   └── constants.ts        # Config constants
-└── types/
-    └── index.ts            # TypeScript interfaces
-```
+- `npm run start` - Start production server on port 5001
 
 ## Supported Formats
 
@@ -73,7 +41,7 @@ npm run dev
 
 ## Technology Stack
 
-- **Next.js** - React framework
+- **Next.js 14** - React framework
 - **TypeScript** - Type safety
 - **Tailwind CSS** - Styling
 - **Tesseract.js** - OCR for image text extraction
@@ -88,6 +56,8 @@ The application can be deployed to Vercel, Netlify, or any Node.js hosting platf
 npm run build
 npm run start
 ```
+
+See demo on [text-extractor.abhishekairan.com](https://text-extractor.abhishekairan.com/)
 
 ## License
 
