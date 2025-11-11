@@ -1,12 +1,10 @@
 import * as pdfjsLib from 'pdfjs-dist';
+import type { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist';
 import Tesseract from 'tesseract.js';
 
-// Set up PDF.js worker - use unpkg CDN for reliability
 if (typeof window !== 'undefined') {
-  // Get the version from the installed package
-  const workerVersion = pdfjsLib.version || '4.10.38';
-  // Use unpkg CDN which is more reliable than cdnjs
-  pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${workerVersion}/build/pdf.worker.min.mjs`;
+
+  pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.10.38/build/pdf.worker.min.mjs`;
 }
 
 /**
@@ -21,18 +19,32 @@ export const extractTextFromPDF = async (
 ): Promise<string> => {
   try {
     const arrayBuffer = await file.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    const pdf: PDFDocumentProxy = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
 
     let fullText = '';
     const totalPages = pdf.numPages;
 
     for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
-      const page = await pdf.getPage(pageNum);
-      const textContent = await page.getTextContent();
-      const pageText = textContent.items.map((item: any) => item.str).join(' ');
-      fullText += pageText + '\n';
+      const page: PDFPageProxy = await pdf.getPage(pageNum);
+      const textContent: any = await page.getTextContent();
 
-      // Report progress
+      let lastY: number | null = null;
+      let pageText = '';
+
+      textContent.items.forEach((item: any) => {
+        const currentY = item.transform[5]; // Y coordinate
+
+        // Detect line break by significant change in Y coordinate
+        if (lastY !== null && Math.abs(currentY - lastY) > 5) {
+          pageText += '\n';
+        }
+
+        pageText += item.str;
+        lastY = currentY;
+      });
+
+      fullText += pageText + '\n\n'; // Add double newline between pages
+
       if (onProgress) {
         onProgress(Math.round((pageNum / totalPages) * 100));
       }

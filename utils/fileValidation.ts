@@ -1,6 +1,12 @@
-import { SUPPORTED_FORMATS, MAX_FILE_SIZE } from './constants';
-
 export const validateFile = (file: File): { valid: boolean; error?: string } => {
+  const SUPPORTED_FORMATS = [
+    'application/pdf',
+    'image/png',
+    'image/jpeg',
+    'image/jpg',
+    'image/webp',
+  ];
+  const MAX_FILE_SIZE = 25 * 1024 * 1024; // 25MB
   if (!file) {
     return { valid: false, error: 'No file provided' };
   }
@@ -30,4 +36,3 @@ export const getFilePreviewUrl = (file: File): Promise<string> => {
     reader.readAsDataURL(file);
   });
 };
-
