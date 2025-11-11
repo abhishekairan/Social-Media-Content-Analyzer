@@ -1,24 +1,18 @@
-# Social Media Content Analyzer - Text Extraction Module
+# Social Media Content Analyzer - Unthinkable Solutions
 
-A lightweight React application that extracts text from PDF and image files using Tesseract.js for OCR and pdf.js for PDF text extraction.
+A React/Nextjs application that extracts text from PDF and image files using Tesseract.js for OCR and pdf.js for PDF text extraction.
 
 ## Features
 
 - ✅ **Drag-and-Drop Upload** - Large, prominent drop zone with visual feedback
 - ✅ **Progress Tracking** - Real-time extraction progress with percentage
-- ✅ **Two-Column View** - Left preview, right extracted text
+
 - ✅ **File Validation** - Format & size checks with clear error messages
 - ✅ **Responsive Design** - Mobile-first, works on all screen sizes
 - ✅ **Copy & Download** - Extract text utilities
 - ✅ **Recent History** - Quick access to previous extractions
-- ✅ **Clean Code** - TypeScript, modular components, proper error handling
+- ✅ **Rresponsive UI** - Support all size of screen
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+ 
-- npm or yarn
 
 ### Installation
 
@@ -38,32 +32,7 @@ npm run dev
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run lint:fix` - Fix ESLint errors
-- `npm run format` - Format code with Prettier
-- `npm run type-check` - Run TypeScript type checking
-
-## Project Structure
-
-```
-├── app/
-│   ├── layout.tsx          # Root layout
-│   ├── page.tsx            # Main app page
-│   └── globals.css         # Global styles
-├── components/
-│   ├── FileUploader.tsx    # Drag-drop upload component
-│   ├── ProgressBar.tsx     # Upload progress indicator
-│   └── ResultView.tsx      # Two-column preview + extracted text
-├── hooks/
-│   └── useFileExtraction.ts # Custom hook for extraction logic
-├── utils/
-│   ├── textExtraction.ts   # PDF & OCR extraction logic
-│   ├── fileValidation.ts   # File type & size validation
-│   └── constants.ts        # Config constants
-└── types/
-    └── index.ts            # TypeScript interfaces
-```
+- `npm run start` - Start production server at port 5001
 
 ## Supported Formats
 
@@ -89,6 +58,7 @@ npm run build
 npm run start
 ```
 
+Or checkout this project at [text-extracter.abhishekairan.com](https://text-extractor.abhishekairan.com/)
 ## License
 
 MIT
