@@ -82,9 +82,11 @@ export const ResultView: React.FC<ResultViewProps> = ({ result, onBack }) => {
 							/>
 						) : (
 							<Image
+								width={246}
+								height={246}
 								src={result.previewUrl}
 								alt="Preview"
-								className="max-w-full h-auto rounded-lg shadow-sm"
+								className="max-w-full rounded-lg shadow-sm w-full h-full object-contain"
 							/>
 						)}
 					</div>
