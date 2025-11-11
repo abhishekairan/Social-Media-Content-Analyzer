@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  webpack: (config) => {
-    config.resolve.alias.canvas = false;
-    return config;
-  },
+  // Provide an explicit (empty) turbopack config so Next.js respects custom webpack
+  // while avoiding the Turbopack vs webpack configuration error introduced in Next 16.
+  turbopack: {},
 };
 
 module.exports = nextConfig;

@@ -1,11 +1,6 @@
-import * as pdfjsLib from 'pdfjs-dist';
 import type { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist';
 import Tesseract from 'tesseract.js';
 
-if (typeof window !== 'undefined') {
-
-  pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.10.38/build/pdf.worker.min.mjs`;
-}
 
 /**
  * Extract text from PDF file
@@ -19,6 +14,14 @@ export const extractTextFromPDF = async (
 ): Promise<string> => {
   try {
     const arrayBuffer = await file.arrayBuffer();
+
+    if (typeof window === 'undefined') {
+      throw new Error('PDF extraction must be run in a browser environment');
+    }
+
+    const pdfjsLib = await import('pdfjs-dist');
+    pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@4.10.38/build/pdf.worker.min.mjs`;
+
     const pdf: PDFDocumentProxy = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
 
     let fullText = '';
